@@ -3,19 +3,14 @@ version: '2'
 services:
 
   node:
+    image: appjs
     build: .
     ports:
-      - "3000:3000"
-    networks:
-      - nodeapp-network
+      - "8080:3000"
     depends_on: 
       - mongodb
       
   mongodb:
     image: mongo
-    networks:
-      - nodeapp-network
-
-networks:
-  nodeapp-network:
-    driver: bridge
+    ports: 
+      - "27017:27017"

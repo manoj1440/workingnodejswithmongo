@@ -1,13 +1,15 @@
-FROM node:latest
+FROM node:8 
 
-ENV NODE_ENV=development 
-ENV PORT=3000
+WORKDIR /app
 
-COPY . /var/www
-WORKDIR /var/www
+COPY package.json package.json 
 
 RUN npm install
 
-EXPOSE $PORT
+COPY app.js .
+COPY index.html . 
 
-ENTRYPOINT ["npm", "start"]
+EXPOSE 3000 
+ 
+CMD [ "npm", "start" ]
+ENTRYPOINT [ "node", "app.js"] 
